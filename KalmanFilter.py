@@ -1,5 +1,5 @@
 # all the linear positions
-from filterpy.common import Q_continuous_white_noise
+
 import numpy as np
 
 class R_KalmanFilter:
@@ -26,6 +26,9 @@ class R_KalmanFilter:
         self.x_k = self.x_priori + K @ (z - self.H @ self.x_priori)
         self.P_k = (np.eye(len(K)) - K @ self.H) @ self.P_priori
         self.current_time += self.dt
+
+    def sef_F(self, F):
+        self.F = F
 
     def get_state(self):
         return self.x_k
